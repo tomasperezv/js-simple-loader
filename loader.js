@@ -1,0 +1,273 @@
+/**
+ * @author tom@0x101.com
+ *
+ * Implementation of the a basic asynchronous loader:
+ * This is the only static file which should present in the initial html structure, loaded by a script tag.
+ * The rest of static files will be loaded by the loader using the loadDefinition.json file.
+ * 
+ * Example of use:
+ *
+ * 		<script src="./js/loader.js"></script>
+ *		<script type="text/javascript">
+ * 			Loader.loadFiles(function() {
+ *				// Everything has been loaded, we can initialize our web application.
+ *			});
+ * 		</script>
+ *
+ */
+
+/**
+ * The Ajax engine performs basic ajax operations. 
+ */
+var AjaxEngine = {
+
+	STATE_LOADED: 4,
+
+	appUrl: 'http://localhost:8000/appUrl/',
+
+	/**
+	 * TODO: Probably we can reuse the xhr object instead of instantiating a new one always.
+	 * Depending on the state of the xhr object we can know if it finished pending operations and
+	 * reuse it in that case.
+	 * @return XMLHttpRequest  
+	 */
+	getXHR: function() {
+		var xhr = new XMLHttpRequest();
+		return xhr;
+	},
+
+	/**
+	 * Simple get request to a given url. Return the results to the onSuccess
+	 * callback.
+	 *
+	 * @param String url  
+	 * @param Function onSuccess
+	 * @param Function onError
+	 */
+	get: function(url, onSuccess, onError) {
+
+		var self = this;
+		var xhr = this.getXHR();
+
+		xhr.open('get', url, true);	
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === self.STATE_LOADED) {
+				switch(xhr.status) {
+
+					case 200:
+					case 202:
+						if (typeof onSuccess !== 'undefined') {
+							onSuccess(xhr.responseText);
+						}
+						break;
+
+					default:
+						if (typeof onError !== 'undefined') {
+							onError(xhr);
+						}
+						break;
+				}
+			}
+		};
+		
+		xhr.send(null);
+	}
+
+};
+
+/**
+ *  The loader object is in charge of loading the static files defined in the
+ *  loadDefinition.json file. It uses Ajax requests and dynamic DOM creation of
+ *  elements for injecting the loaded files, for avoiding blocking.
+ *
+ *  Stores a reference to the pending files to be loaded and when all of them
+ *  are ready the onSuccess passed to the loadFiles function is executed.
+ */
+var Loader = {
+
+	CSS: 'css',
+	JS: 'js',
+	MAIN_PATH: './js/',
+
+	loadQueue: [],
+	onSuccess: null,
+	
+	/**
+	 * Load the files defined in the json and call to the callback function when
+	 * everything is ready.
+	 *
+	 * @param Function onSuccess  
+	 */
+	loadFiles: function(onSuccess) {
+
+		var self = this;
+
+		// First load the file with the definition of the dependences
+		AjaxEngine.get(this.getDefinitionPath(), function(rawDefinition) { 
+			var files = JSON.parse(rawDefinition);
+
+			// Update the load queue and prepare the onSuccess callback
+			self.loadQueue = self.getLoadQueue(files);
+			self.onSuccess = onSuccess;
+
+			var nFiles = files.length;
+			for (var i = 0; i < nFiles; i++) {
+				self.loadFile(files[i]);
+			}
+
+		});
+	},
+
+	getDefinitionPath: function() {
+		return this.MAIN_PATH . './loadDefinition.json'
+	},
+
+	/**
+	 * Generates the queue in charge of storing the pending files to be loaded,
+	 * receiving the array defined in the json definition.
+	 *
+	 * @param Array files  
+	 */
+	getLoadQueue: function(files) {
+
+		var result = [];
+		var counter = 0;
+		var filename = '';
+
+		var nFiles = files.length;
+		for (var i = 0; i < nFiles; i++) {
+			filename = files[i];
+			if (this.getExtension(filename) === this.JS) {
+				result[counter] = filename; 
+				counter++;
+			}
+		}
+
+		return result;
+	},
+	
+	/**
+	 * When one of the files is ready we can update the status of the queue, and
+	 * check if is anything else pending, if not we will call to the callback.
+	 *
+	 * @param String file  
+	 * @param Function callback
+	 */
+	updateQueueState: function(file, onSuccess) {
+
+		var nFiles = this.loadQueue.length;
+		var position = -1;
+
+		for (var i = 0; i < nFiles; i++) {
+			if (this.loadQueue[i] === file) {
+				position = i;
+				break;
+			}
+		}
+
+		// Remove the file from the queue
+		if (position !== -1) {
+
+			this.loadQueue.splice(position, 1);
+
+			if (this.loadQueue.length === 0) {
+				onSuccess();
+			}
+		}
+	},
+
+	/**
+	 * Append a dynamic DOM element to the header.
+	 *
+	 * @param HTMLDOMElement element  
+	 */
+	appendToHead: function(element) {
+		if (document.getElementsByTagName('head').length > 0) {
+			document.getElementsByTagName('head')[0].appendChild(element);
+		}
+	},
+
+	/**
+	 * Bind the callback for a dynamic script tag.
+	 *
+	 * @param HTMLDOMElement element  
+	 * @param Function callback
+	 */
+	attachCallback: function(element, callback) {
+		if (element.readyState) {
+			element.onreadystatechange = function() {
+				if (element.readyState === 'loaded' || element.readyState === 'complete') {
+					element.onreadystatechange = null;
+					callback();
+				}
+			}
+		} else {
+			element.onload = callback;
+		}
+	},
+
+	/**
+	 * Add dynamically a script element.
+	 *
+	 * @param String filename  
+	 * @param Function callback
+	 */
+	loadJS: function(filename, callback) {
+
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+
+		var self = this;
+		this.attachCallback(script, function() {
+			self.updateQueueState(filename, self.onSuccess);
+		});
+
+		script.src = filename;
+		this.appendToHead(script);
+	},
+
+	/**
+	 * Add a css dynamically.  
+	 *
+	 * @param String filename
+	 * @param Function callback
+	 */
+	loadCSS: function(filename, callback) {
+
+		var element = document.createElement('link')
+
+		element.setAttribute('rel', 'stylesheet');
+		element.setAttribute('type', 'text/css');
+		element.setAttribute('href', filename);
+
+		this.appendToHead(element);
+	},
+
+	/**
+	 * @param String filename  
+	 * @return String
+	 */
+	getExtension: function(filename) {
+		return filename.split('.').pop().toLowerCase();
+	},
+
+	/**
+	 * Create a dynamic element for injecting a css or js file in the DOM.  
+	 */
+	loadFile: function(filename) {
+
+		var extension = this.getExtension(filename);
+
+		switch (extension) {
+
+			case this.CSS:
+				this.loadCSS(filename);
+				break;
+
+			case this.JS:
+				this.loadJS(filename);
+				break;
+		}
+	}
+};
