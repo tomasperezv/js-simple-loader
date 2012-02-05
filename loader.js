@@ -22,8 +22,10 @@
 var AjaxEngine = {
 
 	STATE_LOADED: 4,
+	GET: 'get', 
+	POST: 'post',
 
-	appUrl: 'http://localhost:8000/appUrl/',
+	appUrl: '',
 
 	/**
 	 * TODO: Probably we can reuse the xhr object instead of instantiating a new one always.
@@ -36,20 +38,15 @@ var AjaxEngine = {
 		return xhr;
 	},
 
-	/**
-	 * Simple get request to a given url. Return the results to the onSuccess
-	 * callback.
-	 *
-	 * @param String url  
-	 * @param Function onSuccess
-	 * @param Function onError
-	 */
-	get: function(url, onSuccess, onError) {
-
+	open: function(method, url, onSuccess, onError) {
 		var self = this;
 		var xhr = this.getXHR();
 
-		xhr.open('get', url, true);	
+		if (this.appUrl !== '') {
+			url = this.appUrl + url;
+		}
+
+		xhr.open(method, url, true);	
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === self.STATE_LOADED) {
@@ -72,6 +69,30 @@ var AjaxEngine = {
 		};
 		
 		xhr.send(null);
+	},
+
+	/**
+	 * Simple post request to a given url. Return the results to the onSuccess
+	 * callback.
+	 *
+	 * @param String url  
+	 * @param Function onSuccess
+	 * @param Function onError
+	 */
+	post: function(url, onSuccess, onError) {
+		this.open(this.POST, url, onSuccess, onError);
+	},
+
+	/**
+	 * Simple get request to a given url. Return the results to the onSuccess
+	 * callback.
+	 *
+	 * @param String url  
+	 * @param Function onSuccess
+	 * @param Function onError
+	 */
+	get: function(url, onSuccess, onError) {
+		this.open(this.GET, url, onSuccess, onError);
 	}
 
 };
