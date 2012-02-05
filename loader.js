@@ -120,7 +120,7 @@ var Loader = {
 	},
 
 	getDefinitionPath: function() {
-		return this.MAIN_PATH . './loadDefinition.json'
+		return this.MAIN_PATH + './loadDefinition.json';
 	},
 
 	/**
