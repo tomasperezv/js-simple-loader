@@ -53,29 +53,11 @@ var AjaxEngine = {
 		return xhr;
 	},
 
-	/**
-	 * URL-encode parameters passed as an object,
-	 * e.g. params = {a: 'value'} => 'a=value'
-	 * @param Object params
-	 * @author tom@0x101.com  
-	 */
-	URLEncode: function(params) {
-		var result = '';
-		for (var key in params) {
-			if (params.hasOwnProperty(key)) {
-				result += key + '=' + params[key] + '&';
-			}
-		}
-
-		// Remove the last '&' from the string
-		return result.substr(0, result.length-1);
-	},
-
 	open: function(method, url, params, onSuccess, onError) {
 
 		var self = this,
 		xhr = this.getXHR(),
-		strParams = this.URLEncode(params);
+		strParams = Utils.URLEncode(params);
 		
 		if (this.appUrl !== '') {
 			url = this.appUrl + url;
@@ -334,6 +316,31 @@ var Loader = {
 				this.loadJS(filename);
 				break;
 		}
+	}
+};
+
+var Utils = {
+	/**
+	 * URL-encode parameters passed as an object,
+	 * e.g. params = {a: 'value'} => 'a=value'
+	 * @param Object params
+	 * @author tom@0x101.com  
+	 */
+	URLEncode: function(params, separator) {
+
+		if (typeof separator === 'undefined') {
+			var separator = '&';
+		}
+
+		var result = '';
+		for (var key in params) {
+			if (params.hasOwnProperty(key)) {
+				result += key + '=' + params[key] + separator;
+			}
+		}
+
+		// Remove the last '&' from the string
+		return result.substr(0, result.length-1);
 	}
 };
 
