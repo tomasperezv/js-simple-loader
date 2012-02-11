@@ -26,21 +26,58 @@ var AjaxEngine = {
 	POST: 'post',
 
 	appUrl: '',
+	xhrs: [],
 
 	/**
-	 * TODO: Probably we can reuse the xhr object instead of instantiating a new one always.
 	 * Depending on the state of the xhr object we can know if it finished pending operations and
 	 * reuse it in that case.
 	 * @return XMLHttpRequest  
 	 */
 	getXHR: function() {
-		var xhr = new XMLHttpRequest();
+
+		var xhr = null,
+		xhrQueue = this.xhrs,
+		length = xhrQueue.length;
+		
+		for(var i = 0; i < length; i++) {
+			if (xhrQueue[i].readyState === this.STATE_LOADED) {
+				xhr = xhrQueue[i];
+			}
+		}
+
+		if (xhr === null) {
+			xhr = new XMLHttpRequest();
+			this.xhrs.push(xhr);
+		}
+		
 		return xhr;
 	},
 
-	open: function(method, url, onSuccess, onError) {
-		var self = this;
-		var xhr = this.getXHR();
+	/**
+	 * URL-encode parameters passed as an object,
+	 * e.g. params = {a: 'value'} => 'a=value'
+	 * @param Object params
+	 * @author tom@0x101.com  
+	 */
+	URLEncode: function(params) {
+		var result = '';
+		for (var key in params) {
+			if (params.hasOwnProperty(key)) {
+				result += key + '=' + params[key] + '&';
+			}
+		}
+
+		// Remove the last '&' from the string
+		return result.substr(0, result.length-1);
+	},
+
+	open: function(method, url, params, onSuccess, onError) {
+
+		var self = this,
+		xhr = this.getXHR(),
+		strParams = this.URLEncode(params);
+		
+		console.log(strParams);
 
 		if (this.appUrl !== '') {
 			url = this.appUrl + url;
@@ -55,7 +92,8 @@ var AjaxEngine = {
 					case 200:
 					case 202:
 						if (typeof onSuccess !== 'undefined') {
-							onSuccess(xhr.responseText);
+							var result = JSON.parse(xhr.responseText);
+							onSuccess(result);
 						}
 						break;
 
@@ -67,32 +105,41 @@ var AjaxEngine = {
 				}
 			}
 		};
-		
-		xhr.send(null);
+
+		this.setRequestHeaders(xhr, method, strParams.length);
+		xhr.send(strParams);
+	},
+
+	setRequestHeaders: function(xhr, method, length) {
+		if (method === this.POST) {
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		}
 	},
 
 	/**
 	 * Simple post request to a given url. Return the results to the onSuccess
-	 * callback.
+	 * callback (as an object).
 	 *
 	 * @param String url  
+	 * @param Object params
 	 * @param Function onSuccess
 	 * @param Function onError
 	 */
-	post: function(url, onSuccess, onError) {
-		this.open(this.POST, url, onSuccess, onError);
+	post: function(url, params, onSuccess, onError) {
+		this.open(this.POST, url, params, onSuccess, onError);
 	},
 
 	/**
 	 * Simple get request to a given url. Return the results to the onSuccess
-	 * callback.
+	 * callback (as an object).
 	 *
 	 * @param String url  
+	 * @param Object params  
 	 * @param Function onSuccess
 	 * @param Function onError
 	 */
-	get: function(url, onSuccess, onError) {
-		this.open(this.GET, url, onSuccess, onError);
+	get: function(url, params, onSuccess, onError) {
+		this.open(this.GET, url, params, onSuccess, onError);
 	}
 
 };
@@ -292,3 +339,19 @@ var Loader = {
 		}
 	}
 };
+
+/**
+ * @author tom@0x101.com 
+ * Basic JSON support for cross-browser compatibility
+ */
+var JSON = JSON || {}; 
+JSON.parse = JSON.parse || function (strObject) {  
+
+	if (strObject === "") {
+		var strObject = '""';
+	}
+
+	eval("var result = " + strObject + ";");
+
+	return result;
+};  
