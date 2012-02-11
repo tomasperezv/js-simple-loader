@@ -77,8 +77,6 @@ var AjaxEngine = {
 		xhr = this.getXHR(),
 		strParams = this.URLEncode(params);
 		
-		console.log(strParams);
-
 		if (this.appUrl !== '') {
 			url = this.appUrl + url;
 		}
