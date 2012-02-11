@@ -172,8 +172,7 @@ var Loader = {
 		var self = this;
 
 		// First load the file with the definition of the dependences
-		AjaxEngine.get(this.getDefinitionPath(), function(rawDefinition) { 
-			var files = JSON.parse(rawDefinition);
+		AjaxEngine.get(this.getDefinitionPath(), {}, function(files) { 
 
 			// Update the load queue and prepare the onSuccess callback
 			self.loadQueue = self.getLoadQueue(files);
