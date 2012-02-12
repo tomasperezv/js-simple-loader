@@ -72,7 +72,11 @@ var AjaxEngine = {
 					case 200:
 					case 202:
 						if (typeof onSuccess !== 'undefined') {
-							var result = JSON.parse(xhr.responseText);
+							if (this.getResponseHeader('content-type') === 'text/html') {
+								var result = xhr.responseText;
+							} else {
+								var result = JSON.parse(xhr.responseText);
+							}
 							onSuccess(result);
 						}
 						break;
