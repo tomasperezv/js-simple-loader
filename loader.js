@@ -144,6 +144,7 @@ var Loader = {
 
 	loadQueue: [],
 	onSuccess: null,
+	definitionPath: null,
 	
 	/**
 	 * Load the files defined in the json and call to the callback function when
@@ -170,8 +171,12 @@ var Loader = {
 		});
 	},
 
+	setDefinitionPath: function(definitionPath) {
+		this.definitionPath = definitionPath;
+	},
+
 	getDefinitionPath: function() {
-		return this.MAIN_PATH + './loadDefinition.json';
+		return this.definitionPath !== null ? this.definitionPath : this.MAIN_PATH + './loadDefinition.json'
 	},
 
 	/**
