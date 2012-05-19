@@ -56,47 +56,71 @@ var AjaxEngine = {
 	open: function(method, url, params, onSuccess, onError) {
 
 		var self = this,
-		xhr = this.getXHR(),
-		strParams = Utils.URLEncode(params);
+			xhr = this.getXHR(),
+			strParams = Utils.URLEncode(params),
+			xdr = false;
 		
 		if (this.appUrl !== '') {
 			url = this.appUrl + url;
 		}
 
-		xhr.open(method, url, true);	
-
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === self.STATE_LOADED) {
-				switch(xhr.status) {
-
-					case 200:
-					case 202:
-						if (typeof onSuccess !== 'undefined') {
-							if (this.getResponseHeader('content-type') === 'text/html') {
-								var result = xhr.responseText;
-							} else {
-								var result = JSON.parse(xhr.responseText);
-							}
-							onSuccess(result);
-						}
-						break;
-
-					default:
-						if (typeof onError !== 'undefined') {
-							onError(xhr);
-						}
-						break;
-				}
+		try {
+			xhr.open(method, url, true);	
+		} catch (e) {
+			if (window.XDomainRequest) {
+				// Fallback to XDomainRequest
+				xhr = new XDomainRequest();
+				xdr = true;
+				xhr.open(method, url, true);	
 			}
-		};
+		}
 
-		this.setRequestHeaders(xhr, method, strParams.length);
-		xhr.send(strParams);
+		if (xhr) {
+
+			if (!xdr) {
+				xhr.onreadystatechange = function() { 
+					self.processResponse.call(this, onSuccess);
+				};
+				this.setRequestHeaders(xhr, method, strParams.length);
+			} else {
+				xhr.onload = function() {
+					// The fallback to XDomainRequest only support JSON responses.
+					onSuccess( JSON.parse(this.responseText) );
+				};
+			}
+
+			xhr.send(strParams);
+
+		}
 	},
 
 	setRequestHeaders: function(xhr, method, length) {
 		if (method === this.POST) {
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		}
+	},
+
+	processResponse: function(onSuccess) {
+		if (this.readyState === AjaxEngine.STATE_LOADED) {
+			switch(this.status) {
+				case 200:
+				case 202:
+					if (typeof onSuccess !== 'undefined') {
+						if (this.getResponseHeader('content-type') === 'text/html') {
+							var result = this.responseText;
+						} else {
+							var result = JSON.parse(this.responseText);
+						}
+						onSuccess(result);
+					}
+					break;
+
+				default:
+					if (typeof onError !== 'undefined') {
+						onError(this);
+					}
+					break;
+			}
 		}
 	},
 
