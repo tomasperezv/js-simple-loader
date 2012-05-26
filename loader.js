@@ -106,7 +106,8 @@ var AjaxEngine = {
 				case 200:
 				case 202:
 					if (typeof onSuccess !== 'undefined') {
-						if (this.getResponseHeader('content-type') === 'text/html') {
+						var contentType = this.getResponseHeader('content-type')||'';
+						if (contentType.indexOf('text/html') >= 0) {
 							var result = this.responseText;
 						} else {
 							var result = JSON.parse(this.responseText);
