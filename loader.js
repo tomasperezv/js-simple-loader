@@ -28,6 +28,9 @@ var AjaxEngine = {
 	appUrl: '',
 	xhrs: [],
 
+	definition: null,
+	definitionPath: null,
+
 	/**
 	 * Depending on the state of the xhr object we can know if it finished pending operations and
 	 * reuse it in that case.
@@ -181,23 +184,35 @@ var Loader = {
 
 		var self = this;
 
-		// First load the file with the definition of the dependences
-		AjaxEngine.get(this.getDefinitionPath(), {}, function(files) { 
+		if (this.definition == null) {
+			// First load the file with the definition of the dependences
+			AjaxEngine.get(this.getDefinitionPath(), {}, function(definition) {
+				self.definition = definition;
+				self._load(definition, onSuccess);
+			});
+		} else {
+			this._load(this.definition, onSuccess);
+		}
 
-			// Update the load queue and prepare the onSuccess callback
-			self.loadQueue = self.getLoadQueue(files);
-			self.onSuccess = onSuccess;
+	},
 
-			var nFiles = files.length;
-			for (var i = 0; i < nFiles; i++) {
-				self.loadFile(files[i]);
-			}
+	_load: function(files, onSuccess) {
+		// Update the load queue and prepare the onSuccess callback
+		this.loadQueue = this.getLoadQueue(files);
+		this.onSuccess = onSuccess;
 
-		});
+		var nFiles = files.length;
+		for (var i = 0; i < nFiles; i++) {
+			this.loadFile(files[i]);
+		}
 	},
 
 	setDefinitionPath: function(definitionPath) {
 		this.definitionPath = definitionPath;
+	},
+
+	setDefinition: function(definition) {
+		this.definition = definition;
 	},
 
 	getDefinitionPath: function() {
