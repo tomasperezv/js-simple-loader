@@ -1,4 +1,4 @@
-About
+js-simple-loader
 =============
 A simple asynchronous loader(CSS + JS) and AJAX engine.
 
@@ -8,21 +8,27 @@ loader.js is the only static file which is required in the initial html structur
 
 Example of a loadDefinition.json file:
 
-	[
-		"./js/test1.js",
-		"./js/test2.js",
-		"./css/base.css"
-	]
+```javascript
+[
+	"./js/test1.js",
+	"./js/test2.js",
+	"./css/base.css"
+]
+```
 
 If you don't want to perform the request required to load the definition file, you can pass it directly to the loader.
 
-	Loader.setDefinition(["./js/test1.js", "./css/base.css"]);
+```javascript
+Loader.setDefinition(["./js/test1.js", "./css/base.css"]);
+```
 
 The loadFiles function will download the resources and execute a callback once everything is ready.
 
-	Loader.loadFiles(function() {
-		// Everything has been loaded, we can initialize our web application.
-	});
+```javascript
+Loader.loadFiles(function() {
+	// Everything has been loaded, we can initialize our web application.
+});
+```
 
 Author
 ----------
