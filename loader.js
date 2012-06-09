@@ -17,7 +17,9 @@
  */
 
 /**
- * The Ajax engine performs basic ajax operations. 
+ * The Ajax engine performs basic ajax operations.
+ * @class AjaxEngine
+ * @author tom@0x101.com
  */
 var AjaxEngine = {
 
@@ -34,7 +36,7 @@ var AjaxEngine = {
 	/**
 	 * Depending on the state of the xhr object we can know if it finished pending operations and
 	 * reuse it in that case.
-	 * @return XMLHttpRequest  
+	 * @return {XMLHttpRequest}
 	 */
 	getXHR: function() {
 
@@ -56,6 +58,15 @@ var AjaxEngine = {
 		return xhr;
 	},
 
+	/**
+	 * Opens a XHR POST/GET request
+	 * @param {String} method Type of request: POST/GET
+	 * @param {String} url
+	 * @param {Array} params
+	 * @param {Function} onSuccess
+	 * @param {Function} onError
+	 * @author tom@0x101.com
+	 */
 	open: function(method, url, params, onSuccess, onError) {
 
 		var self = this,
@@ -97,12 +108,22 @@ var AjaxEngine = {
 		}
 	},
 
+	/**
+	 * @param {XMLHttpRequest} xhr
+	 * @param {String} method
+	 * @param {Integer} length
+	 * @author tom@0x101.com
+	 */
 	setRequestHeaders: function(xhr, method, length) {
 		if (method === this.POST) {
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		}
 	},
 
+	/**
+	 * @param {Function} onSuccess
+	 * @author tom@0x101.com
+	 */
 	processResponse: function(onSuccess) {
 		if (this.readyState === AjaxEngine.STATE_LOADED) {
 			switch(this.status) {
@@ -132,10 +153,11 @@ var AjaxEngine = {
 	 * Simple post request to a given url. Return the results to the onSuccess
 	 * callback (as an object).
 	 *
-	 * @param String url  
-	 * @param Object params
-	 * @param Function onSuccess
-	 * @param Function onError
+	 * @param {String} url
+	 * @param {Object} params
+	 * @param {Function} onSuccess
+	 * @param {Function} onError
+	 * @author tom@0x101.com
 	 */
 	post: function(url, params, onSuccess, onError) {
 		this.open(this.POST, url, params, onSuccess, onError);
@@ -145,10 +167,11 @@ var AjaxEngine = {
 	 * Simple get request to a given url. Return the results to the onSuccess
 	 * callback (as an object).
 	 *
-	 * @param String url  
-	 * @param Object params  
-	 * @param Function onSuccess
-	 * @param Function onError
+	 * @param {String} url
+	 * @param {Object} params
+	 * @param {Function} onSuccess
+	 * @param {Function} onError
+	 * @author tom@0x101.com
 	 */
 	get: function(url, params, onSuccess, onError) {
 		this.open(this.GET, url, params, onSuccess, onError);
@@ -157,12 +180,14 @@ var AjaxEngine = {
 };
 
 /**
- *  The loader object is in charge of loading the static files defined in the
- *  loadDefinition.json file. It uses Ajax requests and dynamic DOM creation of
- *  elements for injecting the loaded files, for avoiding blocking.
+ * The loader object is in charge of loading the static files defined in the
+ * loadDefinition.json file. It uses Ajax requests and dynamic DOM creation of
+ * elements for injecting the loaded files, for avoiding blocking.
  *
- *  Stores a reference to the pending files to be loaded and when all of them
- *  are ready the onSuccess passed to the loadFiles function is executed.
+ * Stores a reference to the pending files to be loaded and when all of them
+ * are ready the onSuccess passed to the loadFiles function is executed.
+ * @class Loader
+ * @author tom@0x101.com
  */
 var Loader = {
 
@@ -178,7 +203,8 @@ var Loader = {
 	 * Load the files defined in the json and call to the callback function when
 	 * everything is ready.
 	 *
-	 * @param Function onSuccess  
+	 * @param {Function} onSuccess
+	 * @author tom@0x101.com
 	 */
 	loadFiles: function(onSuccess) {
 
@@ -223,7 +249,8 @@ var Loader = {
 	 * Generates the queue in charge of storing the pending files to be loaded,
 	 * receiving the array defined in the json definition.
 	 *
-	 * @param Array files  
+	 * @param {Array} files
+	 * @author tom@0x101.com
 	 */
 	getLoadQueue: function(files) {
 
@@ -247,8 +274,9 @@ var Loader = {
 	 * When one of the files is ready we can update the status of the queue, and
 	 * check if is anything else pending, if not we will call to the callback.
 	 *
-	 * @param String file  
-	 * @param Function callback
+	 * @param {String} file  
+	 * @param {Function} callback
+	 * @author tom@0x101.com
 	 */
 	updateQueueState: function(file, onSuccess) {
 
@@ -276,7 +304,8 @@ var Loader = {
 	/**
 	 * Append a dynamic DOM element to the header.
 	 *
-	 * @param HTMLDOMElement element  
+	 * @param {HTMLDOMElement} element
+	 * @author tom@0x101.com
 	 */
 	appendToHead: function(element) {
 		if (document.getElementsByTagName('head').length > 0) {
@@ -287,8 +316,9 @@ var Loader = {
 	/**
 	 * Bind the callback for a dynamic script tag.
 	 *
-	 * @param HTMLDOMElement element  
-	 * @param Function callback
+	 * @param {HTMLDOMElement} element  
+	 * @param {Function} callback
+	 * @author tom@0x101.com
 	 */
 	attachCallback: function(element, callback) {
 		if (element.readyState) {
@@ -306,8 +336,9 @@ var Loader = {
 	/**
 	 * Add dynamically a script element.
 	 *
-	 * @param String filename  
-	 * @param Function callback
+	 * @param {String} filename  
+	 * @param {Function} callback
+	 * @author tom@0x101.com
 	 */
 	loadJS: function(filename, callback) {
 
@@ -326,8 +357,9 @@ var Loader = {
 	/**
 	 * Add a css dynamically.  
 	 *
-	 * @param String filename
-	 * @param Function callback
+	 * @param {String} filename
+	 * @param {Function} callback
+	 * @author tom@0x101.com
 	 */
 	loadCSS: function(filename, callback) {
 
@@ -341,15 +373,18 @@ var Loader = {
 	},
 
 	/**
-	 * @param String filename  
-	 * @return String
+	 * @param {String} filename
+	 * @return {String}
+	 * @author tom@0x101.com
 	 */
 	getExtension: function(filename) {
 		return filename.split('.').pop().toLowerCase();
 	},
 
 	/**
-	 * Create a dynamic element for injecting a css or js file in the DOM.  
+	 * Create a dynamic element for injecting a css or js file in the DOM.
+	 * @param {String} filename
+	 * @author tom@0x101.com
 	 */
 	loadFile: function(filename) {
 
@@ -368,12 +403,16 @@ var Loader = {
 	}
 };
 
+/**
+ * @class Utils
+ * @author tom@0x101.com
+ */
 var Utils = {
 	/**
 	 * URL-encode parameters passed as an object,
 	 * e.g. params = {a: 'value'} => 'a=value'
-	 * @param Object params
-	 * @author tom@0x101.com  
+	 * @param {Object} params
+	 * @author tom@0x101.com 
 	 */
 	URLEncode: function(params, separator) {
 
@@ -394,8 +433,9 @@ var Utils = {
 };
 
 /**
- * @author tom@0x101.com 
  * Basic JSON support for cross-browser compatibility
+ * @class JSON
+ * @author tom@0x101.com
  */
 var JSON = JSON || {}; 
 JSON.parse = JSON.parse || function (strObject) {  
