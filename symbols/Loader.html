@@ -1,0 +1,750 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>js-simple-loader documentation - Loader</title>
+		<link rel="stylesheet" type="text/css" href="../static/base.css" />
+	</head>
+
+	<body>
+
+		<div id="header" class="true clearfix">
+			<div class="container clearfix">
+				<a class="site-logo" href="https://github.com/">
+					<img alt="GitHub" class="github-logo-4x" height="30" src="../static/github.png">
+				</a>
+				<div id="userbox">
+					<div id="user">
+						<a href="https://github.com/tomasperezv"><img height="20" src="../static/avatar.png" width="20"></a>
+						<a href="https://github.com/tomasperezv" class="name">tomasperezv</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	
+	
+	<li><a href="../symbols/AjaxEngine.html">AjaxEngine</a></li>
+	
+	<li><a href="../symbols/JSON.html">JSON</a></li>
+	
+	<li><a href="../symbols/Loader.html">Loader</a></li>
+	
+	<li><a href="../symbols/Utils.html">Utils</a></li>
+	
+</ul>
+<hr />
+
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class Loader
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				Loader
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/js-simple-loader_loader.js.html">loader.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Loader.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/Loader.html#constructor">Loader</a></b>()
+							</div>
+							<div class="description">The loader object is in charge of loading the static files defined in the
+loadDefinition.json file.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Loader.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.appendToHead">appendToHead</a></b>(element)
+								</div>
+								<div class="description">Append a dynamic DOM element to the header.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.attachCallback">attachCallback</a></b>(element, callback)
+								</div>
+								<div class="description">Bind the callback for a dynamic script tag.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.getDefinitionPath">getDefinitionPath</a></b>()
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.getExtension">getExtension</a></b>(filename)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.getLoadQueue">getLoadQueue</a></b>(files)
+								</div>
+								<div class="description">Generates the queue in charge of storing the pending files to be loaded,
+receiving the array defined in the json definition.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.loadCSS">loadCSS</a></b>(filename, callback)
+								</div>
+								<div class="description">Add a css dynamically.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.loadFile">loadFile</a></b>(filename)
+								</div>
+								<div class="description">Create a dynamic element for injecting a css or js file in the DOM.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.loadFiles">loadFiles</a></b>(onSuccess)
+								</div>
+								<div class="description">Load the files defined in the json and call to the callback function when
+everything is ready.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.loadJS">loadJS</a></b>(filename, callback)
+								</div>
+								<div class="description">Add dynamically a script element.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.setDefinition">setDefinition</a></b>(definition)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.setDefinitionPath">setDefinitionPath</a></b>(definitionPath)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">Loader.<b><a href="../symbols/Loader.html#.updateQueueState">updateQueueState</a></b>(file, callback)
+								</div>
+								<div class="description">When one of the files is ready we can update the status of the queue, and
+check if is anything else pending, if not we will call to the callback.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>Loader</b>()
+				</div>
+				
+				<div class="description">
+					The loader object is in charge of loading the static files defined in the
+loadDefinition.json file. It uses Ajax requests and dynamic DOM creation of
+elements for injecting the loaded files, for avoiding blocking.
+
+Stores a reference to the pending files to be loaded and when all of them
+are ready the onSuccess passed to the loadFiles function is executed.
+					<br /><i>Author: </i>tom@0x101.com.
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".appendToHead"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>appendToHead</b>(element)
+					
+					</div>
+					<div class="description">
+						Append a dynamic DOM element to the header.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{HTMLDOMElement}</span> <b>element</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".attachCallback"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>attachCallback</b>(element, callback)
+					
+					</div>
+					<div class="description">
+						Bind the callback for a dynamic script tag.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{HTMLDOMElement}</span> <b>element</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getDefinitionPath"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>getDefinitionPath</b>()
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getExtension"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">Loader.</span><b>getExtension</b>(filename)
+					
+					</div>
+					<div class="description">
+						
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>filename</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getLoadQueue"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>getLoadQueue</b>(files)
+					
+					</div>
+					<div class="description">
+						Generates the queue in charge of storing the pending files to be loaded,
+receiving the array defined in the json definition.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Array}</span> <b>files</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".loadCSS"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>loadCSS</b>(filename, callback)
+					
+					</div>
+					<div class="description">
+						Add a css dynamically.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>filename</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".loadFile"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>loadFile</b>(filename)
+					
+					</div>
+					<div class="description">
+						Create a dynamic element for injecting a css or js file in the DOM.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>filename</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".loadFiles"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>loadFiles</b>(onSuccess)
+					
+					</div>
+					<div class="description">
+						Load the files defined in the json and call to the callback function when
+everything is ready.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".loadJS"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>loadJS</b>(filename, callback)
+					
+					</div>
+					<div class="description">
+						Add dynamically a script element.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>filename</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".setDefinition"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>setDefinition</b>(definition)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>definition</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".setDefinitionPath"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>setDefinitionPath</b>(definitionPath)
+					
+					</div>
+					<div class="description">
+						
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>definitionPath</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".updateQueueState"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Loader.</span><b>updateQueueState</b>(file, callback)
+					
+					</div>
+					<div class="description">
+						When one of the files is ready we can update the status of the queue, and
+check if is anything else pending, if not we will call to the callback.
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>file</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Jun 10 2012 00:31:49 GMT+0400 (MSD)
+			<br/>Template <a href="https://github.com/tomasperezv/jsdoc-templates">github-project</a>, created by <a href="http://github.com/tomasperezv">tomasperezv</a>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>js-simple-loader documentation - AjaxEngine</title>
+		<link rel="stylesheet" type="text/css" href="../static/base.css" />
+	</head>
+
+	<body>
+
+		<div id="header" class="true clearfix">
+			<div class="container clearfix">
+				<a class="site-logo" href="https://github.com/">
+					<img alt="GitHub" class="github-logo-4x" height="30" src="../static/github.png">
+				</a>
+				<div id="userbox">
+					<div id="user">
+						<a href="https://github.com/tomasperezv"><img height="20" src="../static/avatar.png" width="20"></a>
+						<a href="https://github.com/tomasperezv" class="name">tomasperezv</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	
+	
+	<li><a href="../symbols/AjaxEngine.html">AjaxEngine</a></li>
+	
+	<li><a href="../symbols/JSON.html">JSON</a></li>
+	
+	<li><a href="../symbols/Loader.html">Loader</a></li>
+	
+	<li><a href="../symbols/Utils.html">Utils</a></li>
+	
+</ul>
+<hr />
+
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class AjaxEngine
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				AjaxEngine
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/js-simple-loader_loader.js.html">loader.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class AjaxEngine.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/AjaxEngine.html#constructor">AjaxEngine</a></b>()
+							</div>
+							<div class="description">The Ajax engine performs basic ajax operations.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class AjaxEngine.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.get">get</a></b>(url, params, onSuccess, onError)
+								</div>
+								<div class="description">Simple get request to a given url.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.getXHR">getXHR</a></b>()
+								</div>
+								<div class="description">Depending on the state of the xhr object we can know if it finished pending operations and
+reuse it in that case.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.open">open</a></b>(method, url, params, onSuccess, onError)
+								</div>
+								<div class="description">Opens a XHR POST/GET request</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.post">post</a></b>(url, params, onSuccess, onError)
+								</div>
+								<div class="description">Simple post request to a given url.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.processResponse">processResponse</a></b>(onSuccess)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">AjaxEngine.<b><a href="../symbols/AjaxEngine.html#.setRequestHeaders">setRequestHeaders</a></b>(xhr, method, length)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>AjaxEngine</b>()
+				</div>
+				
+				<div class="description">
+					The Ajax engine performs basic ajax operations.
+					<br /><i>Author: </i>tom@0x101.com.
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".get"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">AjaxEngine.</span><b>get</b>(url, params, onSuccess, onError)
+					
+					</div>
+					<div class="description">
+						Simple get request to a given url. Return the results to the onSuccess
+callback (as an object).
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>url</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>params</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onError</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getXHR"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{XMLHttpRequest}</span>
+					<span class="light">AjaxEngine.</span><b>getXHR</b>()
+					
+					</div>
+					<div class="description">
+						Depending on the state of the xhr object we can know if it finished pending operations and
+reuse it in that case.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{XMLHttpRequest}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".open"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">AjaxEngine.</span><b>open</b>(method, url, params, onSuccess, onError)
+					
+					</div>
+					<div class="description">
+						Opens a XHR POST/GET request
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>method</b>
+									
+								</dt>
+								<dd>Type of request: POST/GET</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>url</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Array}</span> <b>params</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onError</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".post"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">AjaxEngine.</span><b>post</b>(url, params, onSuccess, onError)
+					
+					</div>
+					<div class="description">
+						Simple post request to a given url. Return the results to the onSuccess
+callback (as an object).
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>url</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>params</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onError</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".processResponse"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">AjaxEngine.</span><b>processResponse</b>(onSuccess)
+					
+					</div>
+					<div class="description">
+						
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>onSuccess</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".setRequestHeaders"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">AjaxEngine.</span><b>setRequestHeaders</b>(xhr, method, length)
+					
+					</div>
+					<div class="description">
+						
+						
+						<br /><i>Author: </i>tom@0x101.com.
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{XMLHttpRequest}</span> <b>xhr</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>method</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{Integer}</span> <b>length</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Jun 10 2012 00:31:48 GMT+0400 (MSD)
+			<br/>Template <a href="https://github.com/tomasperezv/jsdoc-templates">github-project</a>, created by <a href="http://github.com/tomasperezv">tomasperezv</a>
+
+		</div>
+	</body>
+</html>
