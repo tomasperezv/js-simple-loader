@@ -30,6 +30,9 @@ Loader.loadFiles(function() {
 });
 ```
 
+Reference: http://tomasperezv.github.com/js-simple-loader/
+
+
 Author
 ----------
 Tomas Perez - tom@0x101.com
@@ -37,6 +40,6 @@ http://www.tomasperez.com
 
 License
 -----------
-Public Domain
+Public Domain.
 
 No warranty expressed or implied. Use at your own risk.
