@@ -131,11 +131,19 @@ var AjaxEngine = {
 				case 202:
 					if (typeof onSuccess !== 'undefined') {
 						var contentType = this.getResponseHeader('content-type')||'';
-						if (contentType.indexOf('text/html') >= 0) {
-							var result = this.responseText;
-						} else {
-							var result = JSON.parse(this.responseText);
-						}
+
+						var result = '';
+						switch(contentType) {
+						  default:
+						    case 'text/html':
+						    case 'text/plain':
+						    result = this.responseText;
+						    break;
+						  case 'application/jsonrequest':
+						    bresult = JSON.parse(this.responseText);
+						    break;
+						  }
+
 						onSuccess(result);
 					}
 					break;
